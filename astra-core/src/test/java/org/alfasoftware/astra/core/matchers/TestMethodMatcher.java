@@ -428,4 +428,14 @@ public class TestMethodMatcher {
     checkMethodMatchFoundInClass(classInstanceCreationMatcher, ExampleClassUsingMultipleMethods.class);
     checkNoMethodMatchFoundInClass(classInstanceCreationMatcherNoMatch, ExampleClassUsingMultipleMethods.class);
   }
+
+  @Test
+  public void testMethodMatcherMatchesReturnType() {
+    MethodMatcher classReferenceMatcher = MethodMatcher.builder()
+            .withReturnType(DescribedPredicate.describedPredicate("Match on String", s -> s.equals("java.lang.String")))
+            .build();
+
+    checkMethodMatchFoundInClass(classReferenceMatcher, ExampleClassWithStringReturnType.class);
+    checkNoMethodMatchFoundInClass(classReferenceMatcher, ExampleClassWithIntegerReturnType.class);
+  }
 }
