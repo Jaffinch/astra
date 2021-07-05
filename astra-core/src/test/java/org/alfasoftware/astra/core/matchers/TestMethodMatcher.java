@@ -431,11 +431,11 @@ public class TestMethodMatcher {
 
   @Test
   public void testMethodMatcherMatchesReturnType() {
-    MethodMatcher classReferenceMatcher = MethodMatcher.builder()
+    MethodMatcher methodReturnTypeMatcher = MethodMatcher.builder()
             .withReturnType(DescribedPredicate.describedPredicate("Match on String", s -> s.equals("java.lang.String")))
             .build();
 
-    checkMethodMatchFoundInClass(classReferenceMatcher, ExampleClassWithStringReturnType.class);
-    checkNoMethodMatchFoundInClass(classReferenceMatcher, ExampleClassWithIntegerReturnType.class);
+    checkMethodMatchFoundInClass(methodReturnTypeMatcher, ExampleClassWithStringReturnType.class);
+    checkNoMethodMatchFoundInClass(methodReturnTypeMatcher, ExampleClassWithIntegerReturnType.class);
   }
 }
